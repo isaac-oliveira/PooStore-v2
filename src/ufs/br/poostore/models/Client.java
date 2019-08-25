@@ -6,6 +6,15 @@ public class Client {
     private String cpf;
     private String phone;
 
+    public Client() {}
+
+    public Client(long id, String name, String cpf, String phone) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.phone = phone;
+    }
+
     public long getId() {
         return id;
     }

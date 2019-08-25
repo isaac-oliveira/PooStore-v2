@@ -1,8 +1,6 @@
 package ufs.br.poostore.store;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +10,10 @@ public class FileStore {
 
     public FileStore(FileType fileType) {
         this.fileType = fileType;
+        this.path = "./Poo.txt";
     }
 
-    public List read(String path) {
+    public List read() {
         List list = new ArrayList();
         try {
             FileReader fileReader = new FileReader(path);
@@ -29,9 +28,35 @@ public class FileStore {
                 list.add(fileType.getObject(attrs));
                 row = bufferedReader.readLine();
             }
+            bufferedReader.close();
+            fileReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public boolean write(Object object) {
+        try {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            List<String> rows = fileType.getRecord(object);
+
+            for(String row : rows) {
+                bufferedWriter.append(row);
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.append("#");
+            bufferedWriter.newLine();
+
+            bufferedWriter.close();
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

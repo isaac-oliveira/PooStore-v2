@@ -9,10 +9,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List list = new FileStore(new ClientFile()).read("./Poo.txt");
+        FileStore fileStore = new FileStore(new ClientFile());
+        fileStore.write(new Client(2, "Teste2 Testando2", "12345678955", "7998562252455"));
+        List list = fileStore.read();
         for (Object object : list) {
             Client client = (Client) object;
-            System.out.println(client.toString());
+            System.out.println(client.getName());
         }
     }
 }
