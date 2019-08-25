@@ -17,13 +17,13 @@ public class ClientFile implements FileType {
             String[] parts = attr.split(":");
             String key = parts[0];
             String value = parts[1];
-            setValueForKey(client, key, value);
+            setValueByKey(client, key, value);
         }
         return client;
     }
 
     @Override
-    public void setValueForKey(Object object, String key, String value) {
+    public void setValueByKey(Object object, String key, String value) {
         Client client = (Client) object;
         switch (key) {
             case ID:
