@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientFile extends FileType {
-    public static final String NAME = "name";
+    public static final String NAME = "Name";
     public static final String CPF = "cpf";
     public static final String PHONE = "phone";
 

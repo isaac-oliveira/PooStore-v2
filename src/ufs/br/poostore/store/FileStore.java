@@ -12,7 +12,6 @@ public class FileStore {
         this.fileType = fileType;
         this.path = "./Poo.txt";
     }
-
     public List read() {
         List list = new ArrayList();
         try {
@@ -41,18 +40,14 @@ public class FileStore {
             FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             List<String> rows = fileType.getRecord(object);
-
             for(String row : rows) {
                 bufferedWriter.append(row);
                 bufferedWriter.newLine();
             }
-
             bufferedWriter.append("#");
             bufferedWriter.newLine();
-
             bufferedWriter.close();
             fileWriter.close();
-
         } catch (IOException e) {
             e.printStackTrace();
             return false;
