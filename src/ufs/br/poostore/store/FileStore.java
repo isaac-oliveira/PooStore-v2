@@ -4,6 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ *
+ * @author isaac
+ */
 public class FileStore {
     private final TypeFile fileType;
     private String path;
@@ -36,9 +41,9 @@ public class FileStore {
         return list;
     }
 
-    public boolean write(Object object) {
+    public boolean write(Object object, boolean append) {
         try {
-            FileWriter fileWriter = new FileWriter(path, true);
+            FileWriter fileWriter = new FileWriter(path, append);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             List<String> rows = fileType.parseRegister(object);
             for(String row : rows) {
@@ -47,6 +52,20 @@ public class FileStore {
             }
             bufferedWriter.append("#");
             bufferedWriter.newLine();
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean clearFile() {
+        try {
+            FileWriter fileWriter = new FileWriter(path);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.append("");
             bufferedWriter.close();
             fileWriter.close();
         } catch (IOException e) {

@@ -2,6 +2,11 @@ package ufs.br.poostore.store;
 
 import java.util.List;
 
+
+/**
+ *
+ * @author isaac
+ */
 public abstract class TypeFile {
     public static final String ID = "id";
     private Object object;

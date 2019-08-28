@@ -3,6 +3,11 @@ package ufs.br.poostore.controllers;
 import ufs.br.poostore.consts.User;
 import ufs.br.poostore.event.UserEvent;
 
+
+/**
+ *
+ * @author isaac
+ */
 public class UserController {
     private static UserController instance = new UserController();
     private UserEvent userEvent;

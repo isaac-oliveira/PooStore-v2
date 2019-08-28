@@ -1,5 +1,10 @@
 package ufs.br.poostore.models;
 
+
+/**
+ *
+ * @author isaac
+ */
 public class Client {
     private long id;
     private String name;

@@ -5,6 +5,11 @@ import ufs.br.poostore.models.Client;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ *
+ * @author isaac
+ */
 public class ClientFile extends TypeFile {
     public static final String NAME = "name";
     public static final String CPF = "cpf";
