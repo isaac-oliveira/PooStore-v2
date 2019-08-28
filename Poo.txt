@@ -8,23 +8,3 @@ name:Victor Queiroz de Souza
 cpf:12345678955
 phone:7998562252455
 #
-id:2
-name:Teste Testando
-cpf:12345678955
-phone:7998562252455
-#
-id:2
-name:Teste2 Testando2
-cpf:12345678955
-phone:7998562252455
-#
-id:2
-name:Teste2 Testando2
-cpf:12345678955
-phone:7998562252455
-#
-id:2
-name:Dafny Testando2
-cpf:12345678955
-phone:7998562252455
-#

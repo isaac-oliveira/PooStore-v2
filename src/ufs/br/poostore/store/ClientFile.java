@@ -5,8 +5,8 @@ import ufs.br.poostore.models.Client;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientFile extends FileType {
-    public static final String NAME = "Name";
+public class ClientFile extends TypeFile {
+    public static final String NAME = "name";
     public static final String CPF = "cpf";
     public static final String PHONE = "phone";
 
@@ -35,7 +35,7 @@ public class ClientFile extends FileType {
     }
 
     @Override
-    List<String> getRecord(Object object) {
+    List<String> parseRegister(Object object) {
         Client client = (Client) object;
 
         List<String> list = new ArrayList<>();

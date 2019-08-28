@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileStore {
-    private final FileType fileType;
+    private final TypeFile fileType;
     private String path;
 
-    public FileStore(FileType fileType) {
+    public FileStore(TypeFile fileType) {
         this.fileType = fileType;
         this.path = "./Poo.txt";
     }
+
     public List read() {
         List list = new ArrayList();
         try {
@@ -24,7 +25,7 @@ public class FileStore {
                     attrs.add(row);
                     row = bufferedReader.readLine();
                 }
-                list.add(fileType.getObject(attrs));
+                list.add(fileType.parseObject(attrs));
                 row = bufferedReader.readLine();
             }
             bufferedReader.close();
@@ -39,7 +40,7 @@ public class FileStore {
         try {
             FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            List<String> rows = fileType.getRecord(object);
+            List<String> rows = fileType.parseRegister(object);
             for(String row : rows) {
                 bufferedWriter.append(row);
                 bufferedWriter.newLine();

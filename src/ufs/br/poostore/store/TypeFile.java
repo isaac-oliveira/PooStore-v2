@@ -2,19 +2,19 @@ package ufs.br.poostore.store;
 
 import java.util.List;
 
-public abstract class FileType {
+public abstract class TypeFile {
     public static final String ID = "id";
     private Object object;
 
     abstract Object newObject();
     abstract void setValueByKey(String key, String value);
-    abstract List<String> getRecord(Object object);
+    abstract List<String> parseRegister(Object object);
 
     public Object getCurrentInstance() {
         return object;
     }
 
-    public Object getObject(List<String> attrs) {
+    public Object parseObject(List<String> attrs) {
         this.object = newObject();
         for (String attr : attrs) {
             String[] parts = attr.split(":");
