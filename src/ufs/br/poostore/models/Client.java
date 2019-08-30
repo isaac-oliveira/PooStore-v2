@@ -1,11 +1,13 @@
 package ufs.br.poostore.models;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author isaac
  */
-public class Client {
+public class Client implements Serializable, Equals<Client> {
     private long id;
     private String name;
     private String cpf;
@@ -50,5 +52,10 @@ public class Client {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean isRegistered(Client obj) {
+        return this.cpf.equalsIgnoreCase(obj.getCpf());
     }
 }

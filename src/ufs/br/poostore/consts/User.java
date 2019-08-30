@@ -1,6 +1,5 @@
 package ufs.br.poostore.consts;
 
-
 /**
  *
  * @author isaac
