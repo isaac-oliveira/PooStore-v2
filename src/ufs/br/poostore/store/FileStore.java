@@ -9,66 +9,37 @@ import java.util.List;
  *
  * @author isaac
  */
-public class FileStore {
-    private final TypeFile fileType;
+public class FileStore<T> {
     private String path;
 
-    public FileStore(TypeFile fileType) {
-        this.fileType = fileType;
-        this.path = "./Poo.txt";
+    public FileStore(String path) {
+        this.path = "./Poo.dat";
     }
-
-    public List read() {
-        List list = new ArrayList();
+    
+    public List<T> read() {
+        List<T> list = new ArrayList();
         try {
-            FileReader fileReader = new FileReader(path);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String row = bufferedReader.readLine();
-            while(row != null) {
-                List<String> attrs = new ArrayList<>();
-                while (!row.equalsIgnoreCase("#")) {
-                    attrs.add(row);
-                    row = bufferedReader.readLine();
-                }
-                list.add(fileType.parseObject(attrs));
-                row = bufferedReader.readLine();
-            }
-            bufferedReader.close();
-            fileReader.close();
-        } catch (IOException e) {
+            FileInputStream file = new FileInputStream(path);
+            ObjectInputStream objectRead = new ObjectInputStream(file);
+            list = (List<T>) objectRead.readObject();
+            objectRead.close();
+            file.close();
+          } catch(Exception e) {
             e.printStackTrace();
-        }
+          }
         return list;
     }
 
-    public boolean write(Object object, boolean append) {
+    public boolean write(List<T> list) {
         try {
-            FileWriter fileWriter = new FileWriter(path, append);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            List<String> rows = fileType.parseRegister(object);
-            for(String row : rows) {
-                bufferedWriter.append(row);
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.append("#");
-            bufferedWriter.newLine();
-            bufferedWriter.close();
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    public boolean clearFile() {
-        try {
-            FileWriter fileWriter = new FileWriter(path);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.append("");
-            bufferedWriter.close();
-            fileWriter.close();
-        } catch (IOException e) {
+            FileOutputStream file = new FileOutputStream(path);
+            ObjectOutputStream objectWrite = new ObjectOutputStream(file);
+            objectWrite.writeObject(list);
+            objectWrite.flush();
+            objectWrite.close();
+            file.flush();
+            file.close();
+        } catch(Exception e) {
             e.printStackTrace();
             return false;
         }
