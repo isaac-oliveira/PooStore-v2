@@ -60,11 +60,11 @@ public class ListController<T> {
     }
 
     public T findOne(String value) {
-        return null;
+        return null;//falta implementar 
     }
 
     public List<T> find(String value) {
-        return null;
+        return null;//falta implementar 
     }
 
     public List<T> getAllList() {
