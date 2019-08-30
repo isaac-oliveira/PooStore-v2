@@ -27,17 +27,31 @@ public class ClientController implements FileController {
 
     @Override
     public void remove(Object object) {
-        this.clients.remove(getIndex(object));
-        //Mudar a lógica abaixo depois
-        this.fileStore.clearFile();
-        for(Client client : clients)
-            this.fileStore.write(client, true);
+        int index = getIndex(object);
+        if(index != -1) {
+            this.clients.remove(index);
+            //Mudar a lógica abaixo depois
+            this.fileStore.clearFile();
+            for(Client client : clients)
+                this.fileStore.write(client, true);
+        }
     }
     
-    
-
     @Override
-    public boolean isExists(Object object) {
+    public void update(Object object) {
+        Client client = (Client) object;
+        int index = getIndex(object);
+        if(index != -1) {
+            this.clients.set(index, client);
+            //Mudar a lógica abaixo depois
+            this.fileStore.clearFile();
+            for(Client c : clients)
+                this.fileStore.write(c, true);
+        }
+    }
+    
+    @Override
+    public boolean exists(Object object) {
         for(Client client : clients) {
             if(client.equals(object))
                 return true;
@@ -69,7 +83,7 @@ public class ClientController implements FileController {
     public int getIndex(Object object) {
         Client client = (Client) object;
         for(int i = 0; i < clients.size(); i++) 
-            if(clients.get(i).getCpf().equals(client.getCpf()))
+            if(clients.get(i).getId() == client.getId())
                 return i;
         return -1;
     }

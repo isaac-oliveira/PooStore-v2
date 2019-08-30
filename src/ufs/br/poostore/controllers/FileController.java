@@ -9,8 +9,9 @@ import java.util.List;
 public interface FileController {
     void add(Object object);
     void remove(Object object);
+    void update(Object newObject);
     int getIndex(Object object);
-    boolean isExists(Object object);
+    boolean exists(Object object);
     Object findOne(String value);
     List find(String value);
     List getAllList();
