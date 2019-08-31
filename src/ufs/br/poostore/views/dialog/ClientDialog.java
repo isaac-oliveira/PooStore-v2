@@ -22,8 +22,15 @@ import ufs.br.poostore.models.Client;
 public class ClientDialog extends JDialog {
 
     private ListController listController;
+    private Client client;
     
     public ClientDialog(ListController listController) {
+        this.listController = listController;
+        initComponents();
+    }
+    
+    public ClientDialog(Client client, ListController listController) {
+        this.client = client;
         this.listController = listController;
         initComponents();
     }
@@ -48,6 +55,12 @@ public class ClientDialog extends JDialog {
         phone.setPreferredSize(new Dimension(200, 25));
         panel.add(phone);
         
+        if(client != null) {
+            name.setText(client.getName());
+            cpf.setText(client.getCpf());
+            phone.setText(client.getPhone());
+        }
+        
         JLabel message = new JLabel();
         message.setPreferredSize(new Dimension(200, 25));
         panel.add(message);
@@ -59,10 +72,20 @@ public class ClientDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 message.setText("");
-                if(!listController.add(new Client(1, name.getText(), cpf.getText(), phone.getText())))
-                    message.setText("CPF já registrado");
-                else 
-                    ClientDialog.this.setVisible(false);
+                if(client == null) {
+                    if(!listController.add(new Client(1, name.getText(), cpf.getText(), phone.getText())))
+                        message.setText("CPF já registrado");
+                    else 
+                        ClientDialog.this.setVisible(false);
+                } else {
+                    client.setName(name.getText());
+                    client.setCpf(cpf.getText());
+                    client.setPhone(phone.getText());
+                    if(!listController.update(client))
+                        message.setText("Erro ao atualizar");
+                    else 
+                        ClientDialog.this.setVisible(false);
+                }
             }
         });
         bottom.add(btnOk);
