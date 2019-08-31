@@ -12,7 +12,7 @@ public class FileStore<T> {
     private String path;
 
     public FileStore(String path) {
-        this.path = "./Poo.dat";
+        this.path = path;
     }
     
     public List<T> read() {

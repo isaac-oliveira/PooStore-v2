@@ -2,7 +2,6 @@ package ufs.br.poostore.models;
 
 import java.io.Serializable;
 
-
 /**
  *
  * @author isaac

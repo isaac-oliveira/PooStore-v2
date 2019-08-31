@@ -8,8 +8,8 @@ public class ListController<T> {
     private List<T> list;
     private FileStore<T> fileStore;
     
-    public ListController() {
-        this.fileStore = new FileStore<T>("");
+    public ListController(String path) {
+        this.fileStore = new FileStore<T>(path);
         this.list = fileStore.read();
     }
 
@@ -50,7 +50,7 @@ public class ListController<T> {
         Equals<T> equals = (Equals<T>) obj;
         for(int i = 0; i < list.size(); i++)
             if(equals.isRegistered(list.get(i)))
-                return i;
+                return i;;
         
         return -1;
     }

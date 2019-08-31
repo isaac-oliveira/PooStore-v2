@@ -7,14 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import ufs.br.poostore.consts.User;
 import ufs.br.poostore.controllers.UserController;
+import ufs.br.poostore.controllers.WindowsController;
 import ufs.br.poostore.event.UserEvent;
+import ufs.br.poostore.models.Category;
+import ufs.br.poostore.models.Client;
 
 /**
  *
  * @author isaac
  */
 public class MainScreen extends JFrame implements UserEvent {
-    public static final int WIDTH = 500;
+    public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
     private IndicatorUserPanel indicatorUser;
     private LoginPanel loginPanel = new LoginPanel();
@@ -22,6 +25,7 @@ public class MainScreen extends JFrame implements UserEvent {
 
     public MainScreen() {
         super("PooStore");
+        WindowsController.getInstance().setFrame(this);
         initComponents();
     }
 
@@ -36,12 +40,14 @@ public class MainScreen extends JFrame implements UserEvent {
             }
         });
         UserController.getInstance().setUserEvent(this);
-        this.add(loginPanel, BorderLayout.CENTER);
+        //this.add(loginPanel, BorderLayout.CENTER);
+        this.add(new ListPanel<Client>(new ClientPanel(), "./clients.dat"), BorderLayout.CENTER);
     }
     
     public JPanel getUserPanel(User user) {
         switch(user) {
-            case GESTOR_CLIENTE: return new ClientPanel();
+            case GESTOR_ESTOQUE: return new ListPanel<Category>(new ClientPanel(), "./clients.dat");
+            case GESTOR_CLIENTE: return new ListPanel<Client>(new ClientPanel(), "./clients.dat");
             default: return loginPanel;
         }
     }
