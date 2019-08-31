@@ -1,6 +1,6 @@
 package ufs.br.poostore.models;
 
-public class ProductStock extends Product{
+public class ProductStock extends Product {
     
     private int quantityStock;
     private boolean inPromotion;

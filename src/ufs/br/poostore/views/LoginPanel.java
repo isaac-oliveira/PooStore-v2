@@ -20,10 +20,10 @@ import ufs.br.poostore.controllers.UserController;
  */
 public class LoginPanel extends JPanel {
     public LoginPanel() {
-        initComponent();
+        initComponents();
     }
 
-    private void initComponent() {
+    private void initComponents() {
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         

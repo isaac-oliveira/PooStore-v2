@@ -1,6 +1,6 @@
 package ufs.br.poostore.models;
 
-public class ProductSale extends Product{
+public class ProductSale extends Product {
     
     private int soldQuantity;
     private float total;

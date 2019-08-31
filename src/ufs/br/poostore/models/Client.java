@@ -55,6 +55,11 @@ public class Client implements Serializable, Equals<Client> {
     }
 
     @Override
+    public String toString() {
+        return "Código " + id + " - Nome: " + name;
+    }
+    
+    @Override
     public boolean isRegistered(Client obj) {
         return this.cpf.equalsIgnoreCase(obj.getCpf());
     }
