@@ -15,8 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import ufs.br.poostore.event.OnItemSelectedListener;
-import ufs.br.poostore.models.Client;
-import ufs.br.poostore.views.dialog.ClientDialog;
+import ufs.br.poostore.models.Category;
 
 /**
  *
