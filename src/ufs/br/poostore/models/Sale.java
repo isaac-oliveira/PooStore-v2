@@ -1,6 +1,8 @@
 package ufs.br.poostore.models;
 
-public class Sale{
+import java.io.Serializable;
+
+public class Sale implements Serializable, Equals<Sale>{
     
     private long id;
     private int date;
@@ -46,6 +48,16 @@ public class Sale{
 
     public void setClientId(int clientId) {
         this.clientId = clientId;
+    }
+    
+    @Override
+    public String toString(){
+        return "Código " + id + "- Data: " + date; //converter para data usual
+    }
+    
+    @Override
+    public boolean isRegistered(Sale obj){
+        return this.date == obj.getDate();
     }
 
 }
