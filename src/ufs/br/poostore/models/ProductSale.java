@@ -32,7 +32,7 @@ public class ProductSale extends Product implements Serializable, Equals<Product
     
     @Override
     public String toString(){
-        return "Código " + id + "- Nome: " + name;
+        return "Código " + this.getId() + "- Nome: " + this.getName();
     }
     
     @Override
