@@ -1,6 +1,8 @@
 package ufs.br.poostore.models;
 
-public class ProductStock extends Product {
+import java.io.Serializable;
+
+public class ProductStock extends Product implements Serializable, Equals<ProductStock>{
     
     private int quantityStock;
     private boolean inPromotion;
@@ -36,5 +38,15 @@ public class ProductStock extends Product {
 
     public void setPromotionPercent(float promotionPercent) {
         this.promotionPercent = promotionPercent;
+    }
+    
+    @Override
+    public String toString(){
+        return "Código " + id + "- Nome: " + name;
+    }
+    
+    @Override
+    public boolean isRegistered(ProductStock obj){
+        return this.name.equalsIgnoreCase(obj.getName());
     }
 }
