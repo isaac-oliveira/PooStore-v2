@@ -64,10 +64,8 @@ public class ClientPanel  extends JPanel implements OnItemSelectedListener<Clien
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if(listPanel != null) {
-                    new ClientDialog(listPanel.getListController()).setVisible(true);
-                    listPanel.loadList();
-                }
+                if(listPanel != null)
+                    new ClientDialog(listPanel).setVisible(true);
             }
         });
         bottomPanel.add(btnAdd);
@@ -76,10 +74,8 @@ public class ClientPanel  extends JPanel implements OnItemSelectedListener<Clien
         btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if(listPanel != null && client != null) {
-                    new ClientDialog(client, listPanel.getListController()).setVisible(true);
-                    listPanel.loadList();
-                }
+                if(listPanel != null && client != null)
+                    new ClientDialog(client, listPanel).setVisible(true);
             }
         });
         bottomPanel.add(btnUpdate);

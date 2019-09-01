@@ -9,6 +9,6 @@ import ufs.br.poostore.views.MainScreen;
 public class Main {
     
     public static void main(String args[]) {
-        new MainScreen().setVisible(true);
+        new MainScreen().setVisible(true);               
     }
 }

@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import ufs.br.poostore.controllers.ListController;
 import ufs.br.poostore.controllers.WindowsController;
 import ufs.br.poostore.models.Client;
+import ufs.br.poostore.views.ListPanel;
 
 /**
  *
@@ -21,17 +22,20 @@ import ufs.br.poostore.models.Client;
  */
 public class ClientDialog extends JDialog {
 
+    private ListPanel listPanel;
     private ListController listController;
     private Client client;
     
-    public ClientDialog(ListController listController) {
-        this.listController = listController;
+    public ClientDialog(ListPanel listPanel) {
+        this.listPanel = listPanel;
+        this.listController = listPanel.getListController();
         initComponents();
     }
     
-    public ClientDialog(Client client, ListController listController) {
+    public ClientDialog(Client client, ListPanel listPanel) {
         this.client = client;
-        this.listController = listController;
+        this.listPanel = listPanel;
+        this.listController = listPanel.getListController();
         initComponents();
     }
 
@@ -86,16 +90,17 @@ public class ClientDialog extends JDialog {
                     else 
                         ClientDialog.this.setVisible(false);
                 }
+                listPanel.loadList();
             }
         });
         bottom.add(btnOk);
         
         JButton btnCancel = new JButton("Cancelar");
-        btnCancel.addActionListener(new  ActionListener() {
-            @Override
+        btnCancel.addActionListener(new ActionListener() {
+            @Override            
             public void actionPerformed(ActionEvent ae) {
                 ClientDialog.this.setVisible(false);
-            }            
+            }
         });
         bottom.add(btnCancel);
         

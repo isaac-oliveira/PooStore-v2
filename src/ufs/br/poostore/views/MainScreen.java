@@ -40,8 +40,8 @@ public class MainScreen extends JFrame implements UserEvent {
             }
         });
         UserController.getInstance().setUserEvent(this);
-        //this.add(loginPanel, BorderLayout.CENTER);
-        this.add(new ListPanel<Client>(new ClientPanel(), "./clients.dat"), BorderLayout.CENTER);
+        this.add(loginPanel, BorderLayout.CENTER);
+        //this.add(new ListPanel<Client>(new ClientPanel(), "./clients.dat"), BorderLayout.CENTER);
     }
     
     public JPanel getUserPanel(User user) {

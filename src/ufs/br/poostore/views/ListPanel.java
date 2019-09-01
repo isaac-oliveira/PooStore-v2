@@ -26,12 +26,12 @@ public class ListPanel<T> extends JPanel {
     
     public ListPanel(OnItemSelectedListener rightPanel, String path) {
         this.rightPanel = rightPanel;
+        this.listController = new ListController<T>(path);
         this.path = path;
         initComponents();
     }
     
     public void loadList() {
-        listController = new ListController<T>(path);
         list = listController.getAllList();
         jList.setListData(new Vector<T>(list));
         rightPanel.loadInfo(ListPanel.this, null);
