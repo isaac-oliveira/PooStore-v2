@@ -42,11 +42,11 @@ public class ProductStock extends Product implements Serializable, Equals<Produc
     
     @Override
     public String toString(){
-        return "Código " + id + "- Nome: " + name;
+        return "Código " + this.getId() + "- Nome: " + this.getName();
     }
     
     @Override
     public boolean isRegistered(ProductStock obj){
-        return this.name.equalsIgnoreCase(obj.getName());
+        return this.getName().equalsIgnoreCase(obj.getName());
     }
 }
