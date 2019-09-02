@@ -2,7 +2,6 @@ package ufs.br.poostore.models;
 
 import java.io.Serializable;
 
-
 /**
  *
  * @author isaac
@@ -54,6 +53,11 @@ public class Client implements Serializable, Equals<Client> {
         this.phone = phone;
     }
 
+    @Override
+    public String toString() {
+        return "Código " + id + " - Nome: " + name;
+    }
+    
     @Override
     public boolean isRegistered(Client obj) {
         return this.cpf.equalsIgnoreCase(obj.getCpf());

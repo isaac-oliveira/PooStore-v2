@@ -1,6 +1,8 @@
 package ufs.br.poostore.models;
 
-public class ProductSale extends Product{
+import java.io.Serializable;
+
+public class ProductSale extends Product implements Serializable, Equals<ProductSale>{
     
     private int soldQuantity;
     private float total;
@@ -26,5 +28,15 @@ public class ProductSale extends Product{
 
     public void setTotal(float total) {
         this.total = total;
+    }
+    
+    @Override
+    public String toString(){
+        return "Código " + this.getId() + "- Nome: " + this.getName();
+    }
+    
+    @Override
+    public boolean isRegistered(ProductSale obj){
+        return this.getName().equalsIgnoreCase(obj.getName());
     }
 }

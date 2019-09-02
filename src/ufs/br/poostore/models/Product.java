@@ -1,6 +1,6 @@
 package ufs.br.poostore.models;
 
-public class Product{
+public abstract class Product {
     
     private long id;
     private String name;

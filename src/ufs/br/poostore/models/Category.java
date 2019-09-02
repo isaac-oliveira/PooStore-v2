@@ -1,6 +1,8 @@
 package ufs.br.poostore.models;
 
-public class Category{
+import java.io.Serializable;
+
+public class Category implements Serializable, Equals<Category>{
     
     private long id;
     private String name;
@@ -26,5 +28,15 @@ public class Category{
 
     public void setName(String name){
         this.name = name;
+    }
+    
+    @Override
+    public String toString(){
+        return "Código: " + id + " - Nome: " + name;
+    }
+    
+    @Override
+    public boolean isRegistered(Category obj){
+        return this.name.equalsIgnoreCase(obj.getName());
     }
 }
