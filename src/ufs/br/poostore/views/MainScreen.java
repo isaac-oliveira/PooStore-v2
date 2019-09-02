@@ -40,13 +40,21 @@ public class MainScreen extends JFrame implements UserEvent {
             }
         });
         UserController.getInstance().setUserEvent(this);
-        this.add(loginPanel, BorderLayout.CENTER);
+        this.addCenterPanel(loginPanel);
         //this.add(new ListPanel<Client>(new ClientPanel(), "./clients.dat"), BorderLayout.CENTER);
+    }
+    
+    public void addCenterPanel(JPanel panel) {
+        if(this.panel != null) this.remove(this.panel);
+        this.add(panel, BorderLayout.CENTER);
+        this.revalidate();
+
+        this.panel = panel;
     }
     
     public JPanel getUserPanel(User user) {
         switch(user) {
-            case GESTOR_ESTOQUE: return new ListPanel<Category>(new ClientPanel(), "./clients.dat");
+            case GESTOR_ESTOQUE: return new EstoquePanel(this);
             case GESTOR_CLIENTE: return new ListPanel<Client>(new ClientPanel(), "./clients.dat");
             default: return loginPanel;
         }
@@ -56,18 +64,13 @@ public class MainScreen extends JFrame implements UserEvent {
     public void onUserSelect(User user) {
         indicatorUser = new IndicatorUserPanel();
         this.add(indicatorUser, BorderLayout.SOUTH);
-        this.remove(loginPanel);
-        panel = getUserPanel(user);
-        this.add(panel);
-        this.revalidate();
+        this.addCenterPanel(getUserPanel(user));
     }
 
     @Override
     public void onUserExit() {
         this.remove(indicatorUser);
-        this.remove(panel);
         loginPanel = new LoginPanel();
-        this.add(loginPanel);
-        this.revalidate();
+        this.addCenterPanel(loginPanel);
     }
 }
