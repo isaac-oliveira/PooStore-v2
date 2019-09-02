@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ufs.br.poostore.views;
 
 import java.awt.BorderLayout;
@@ -15,23 +10,26 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import ufs.br.poostore.event.OnItemSelectedListener;
-import ufs.br.poostore.models.Category;
-import ufs.br.poostore.views.dialog.CategoryDialog;
+import ufs.br.poostore.models.ProductStock;
 
 /**
  *
  * @author victor
  */
-public class CategoryPanel extends JPanel implements OnItemSelectedListener<Category> {
-
-    private JLabel nameLabel;
-    private ListPanel listPanel;
-    private Category category;
+public class ProductStockPanel extends JPanel implements OnItemSelectedListener<ProductStock>{
     
-    public CategoryPanel() {
+    private JLabel nameLabel;
+    private JLabel priceLabel;
+    private JLabel quantityStockLabel;
+    private JLabel inPromotionLabel;
+    private JLabel promotionPercentLabel;
+    private ListPanel listPanel;
+    private ProductStock productStock;
+    
+    public ProductStockPanel(){
         initComponents();
     }
-
+    
     private void initComponents() {
         this.setLayout(new BorderLayout());
         
@@ -41,11 +39,23 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         JPanel keyPanel = new JPanel();
         keyPanel.setLayout(new BoxLayout(keyPanel, BoxLayout.Y_AXIS));
         keyPanel.add(new JLabel("Nome: "));
+        keyPanel.add(new JLabel("Preço: "));
+        keyPanel.add(new JLabel("Quantidade em estoque: "));
+        keyPanel.add(new JLabel("Em promoção: "));
+        keyPanel.add(new JLabel("Porcentagem da promoção: "));
         
         JPanel valuePanel = new JPanel();
         valuePanel.setLayout(new BoxLayout(valuePanel, BoxLayout.Y_AXIS));
         nameLabel = new JLabel("-");
         valuePanel.add(nameLabel);
+        priceLabel = new JLabel("-");
+        valuePanel.add(priceLabel);
+        quantityStockLabel = new JLabel("-");
+        valuePanel.add(quantityStockLabel);
+        inPromotionLabel = new JLabel("-");
+        valuePanel.add(inPromotionLabel);
+        promotionPercentLabel = new JLabel("-");
+        valuePanel.add(promotionPercentLabel);
                 
         center.add(keyPanel, new GridBagConstraints());
         center.add(valuePanel, new GridBagConstraints());
@@ -56,8 +66,7 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if(listPanel != null)
-                    new CategoryDialog(listPanel).setVisible(true);
+                
             }
         });
         bottomPanel.add(btnAdd);
@@ -66,8 +75,7 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if(listPanel != null && category != null)
-                    new CategoryDialog(category, listPanel).setVisible(true);
+                
             }
         });
         bottomPanel.add(btnUpdate);
@@ -76,8 +84,8 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         btnRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                if(listPanel != null && category != null) {
-                    listPanel.getListController().remove(category);
+                if(listPanel != null && productStock != null) {
+                    listPanel.getListController().remove(productStock);
                     listPanel.loadList();
                 }
             }
@@ -89,10 +97,13 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
     }
 
     @Override
-    public void loadInfo(ListPanel listPanel, Category obj) {
+    public void loadInfo(ListPanel listPanel, ProductStock obj) {
         boolean notNull = obj != null;
         this.listPanel = listPanel;
-        this.category = obj;
+        this.productStock = obj;
         nameLabel.setText(notNull ? obj.getName() : "-");
-    }
+        priceLabel.setText(notNull ? obj.getPrice() : "-");
+        quantityStockLabel.setText(notNull ? obj.getQuantityStock() : "-");
+        inPromotionLabel.setText(notNull ? obj.isInPromotion() ? "Sim" : "Não" : "-");
+        promotionPercentLabel.setText(notNull ? obj.getPromotionPercent() : "-");    }
 }
