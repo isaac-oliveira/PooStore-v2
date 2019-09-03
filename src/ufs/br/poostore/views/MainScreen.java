@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import ufs.br.poostore.consts.User;
 import ufs.br.poostore.controllers.UserController;
 import ufs.br.poostore.controllers.WindowsController;
+import ufs.br.poostore.event.OnBack;
 import ufs.br.poostore.event.UserEvent;
 import ufs.br.poostore.models.Category;
 import ufs.br.poostore.models.Client;
@@ -16,7 +17,7 @@ import ufs.br.poostore.models.Client;
  *
  * @author isaac
  */
-public class MainScreen extends JFrame implements UserEvent {
+public class MainScreen extends JFrame implements UserEvent, OnBack {
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
     private IndicatorUserPanel indicatorUser;
@@ -72,5 +73,16 @@ public class MainScreen extends JFrame implements UserEvent {
         this.remove(indicatorUser);
         loginPanel = new LoginPanel();
         this.addCenterPanel(loginPanel);
+    }
+
+    void setBackButton(BackButtonPanel button) {
+        button.setOnBack(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        User user = UserController.getInstance().getUser();
+        if(user != User.GERENTE || user == User.GESTOR_CLIENTE)
+            this.addCenterPanel(getUserPanel(user));
     }
 }

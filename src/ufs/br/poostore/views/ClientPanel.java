@@ -14,6 +14,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import ufs.br.poostore.consts.User;
+import ufs.br.poostore.controllers.UserController;
 import ufs.br.poostore.event.OnItemSelectedListener;
 import ufs.br.poostore.models.Client;
 import ufs.br.poostore.views.dialog.ClientDialog;
@@ -29,8 +31,14 @@ public class ClientPanel  extends JPanel implements OnItemSelectedListener<Clien
     private JLabel phoneLabel;
     private ListPanel listPanel;
     private Client client;
+    private MainScreen mainScreen;
     
     public ClientPanel() {
+        initComponents();
+    }
+    
+    public ClientPanel(MainScreen mainScreen) {
+        this.mainScreen = mainScreen;
         initComponents();
     }
 
@@ -91,7 +99,9 @@ public class ClientPanel  extends JPanel implements OnItemSelectedListener<Clien
             }
         });
         bottomPanel.add(btnRemove);
-
+        
+        if(mainScreen != null)
+            this.add(new BackButtonPanel(mainScreen), BorderLayout.NORTH);
         this.add(center, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }

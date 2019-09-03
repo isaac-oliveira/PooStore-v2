@@ -27,8 +27,10 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
     private JLabel nameLabel;
     private ListPanel listPanel;
     private Category category;
-    
-    public CategoryPanel() {
+    private MainScreen mainScreen;
+
+    CategoryPanel(MainScreen mainScreen) {
+        this.mainScreen = mainScreen;
         initComponents();
     }
 
@@ -83,7 +85,7 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
             }
         });
         bottomPanel.add(btnRemove);
-
+        this.add(new BackButtonPanel(mainScreen), BorderLayout.NORTH);
         this.add(center, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }

@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import ufs.br.poostore.models.Category;
+import ufs.br.poostore.models.ProductStock;
 
 /**
  *
@@ -30,12 +31,18 @@ public class EstoquePanel extends JPanel {
         btnCategory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                mainScreen.addCenterPanel(new ListPanel<Category>(new CategoryPanel(), "./category.dat"));
+                mainScreen.addCenterPanel(new ListPanel<Category>(new CategoryPanel(mainScreen), "./category.dat"));
             }            
         });
         this.add(btnCategory);
         
         JButton btnProduct = new JButton("Produtos");
+        btnProduct.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mainScreen.addCenterPanel(new ListPanel<ProductStock>(new ProductStockPanel(mainScreen), "./productStock.dat"));
+            }            
+        });
         this.add(btnProduct);
         
         this.add(center, new GridBagConstraints());        

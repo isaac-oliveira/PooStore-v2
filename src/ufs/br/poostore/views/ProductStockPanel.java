@@ -25,8 +25,10 @@ public class ProductStockPanel extends JPanel implements OnItemSelectedListener<
     private JLabel promotionPercentLabel;
     private ListPanel listPanel;
     private ProductStock productStock;
+    private MainScreen mainScreen;
     
-    public ProductStockPanel(){
+    ProductStockPanel(MainScreen mainScreen) {
+        this.mainScreen = mainScreen;
         initComponents();
     }
     
@@ -92,18 +94,13 @@ public class ProductStockPanel extends JPanel implements OnItemSelectedListener<
         });
         bottomPanel.add(btnRemove);
 
+        this.add(new BackButtonPanel(mainScreen), BorderLayout.NORTH);
         this.add(center, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
     @Override
     public void loadInfo(ListPanel listPanel, ProductStock obj) {
-        boolean notNull = obj != null;
-        this.listPanel = listPanel;
-        this.productStock = obj;
-        nameLabel.setText(notNull ? obj.getName() : "-");
-        priceLabel.setText(notNull ? obj.getPrice() : "-");
-        quantityStockLabel.setText(notNull ? obj.getQuantityStock() : "-");
-        inPromotionLabel.setText(notNull ? obj.isInPromotion() ? "Sim" : "Não" : "-");
-        promotionPercentLabel.setText(notNull ? obj.getPromotionPercent() : "-");    }
+        
+    }
 }
