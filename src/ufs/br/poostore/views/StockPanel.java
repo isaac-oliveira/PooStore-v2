@@ -14,10 +14,10 @@ import ufs.br.poostore.models.ProductStock;
  *
  * @author isaac
  */
-public class EstoquePanel extends JPanel {
+public class StockPanel extends JPanel {
     private final MainScreen mainScreen;
     
-    public EstoquePanel(MainScreen mainScreen) {
+    public StockPanel(MainScreen mainScreen) {
         this.mainScreen = mainScreen;
         initComponents();
     }

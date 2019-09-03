@@ -55,8 +55,9 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
     
     public JPanel getUserPanel(User user) {
         switch(user) {
-            case GESTOR_ESTOQUE: return new EstoquePanel(this);
+            case GESTOR_ESTOQUE: return new StockPanel(this);
             case GESTOR_CLIENTE: return new ListPanel<Client>(new ClientPanel(), "./clients.dat");
+            case GERENTE: return new ManagerPanel(this);
             default: return loginPanel;
         }
     }
