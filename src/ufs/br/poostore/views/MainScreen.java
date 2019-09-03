@@ -83,7 +83,6 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
     @Override
     public void onBackPressed() {
         User user = UserController.getInstance().getUser();
-        if(user != User.GERENTE || user == User.GESTOR_CLIENTE)
-            this.addCenterPanel(getUserPanel(user));
+        this.addCenterPanel(getUserPanel(user));
     }
 }

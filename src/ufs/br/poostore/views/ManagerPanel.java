@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import ufs.br.poostore.models.Client;
 
 /**
  *
@@ -38,6 +39,7 @@ public class ManagerPanel extends JPanel {
         btnClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                mainScreen.addCenterPanel(new ListPanel<Client>(new ClientPanel(mainScreen), "./clients.dat"));
             }            
         });
         this.add(btnClient);
