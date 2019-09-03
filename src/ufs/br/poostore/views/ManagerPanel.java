@@ -48,6 +48,7 @@ public class ManagerPanel extends JPanel {
         btnStock.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                mainScreen.addCenterPanel(new StockPanel(mainScreen));
             }            
         });
         this.add(btnStock);

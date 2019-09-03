@@ -1,5 +1,6 @@
 package ufs.br.poostore.views;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import ufs.br.poostore.consts.User;
+import ufs.br.poostore.controllers.UserController;
 import ufs.br.poostore.models.Category;
 import ufs.br.poostore.models.ProductStock;
 
@@ -23,7 +26,10 @@ public class StockPanel extends JPanel {
     }
 
     private void initComponents() {
-        this.setLayout(new GridBagLayout());
+        this.setLayout(new BorderLayout());
+        JPanel panel = new JPanel();
+        
+        panel.setLayout(new GridBagLayout());
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
@@ -34,7 +40,7 @@ public class StockPanel extends JPanel {
                 mainScreen.addCenterPanel(new ListPanel<Category>(new CategoryPanel(mainScreen), "./category.dat"));
             }            
         });
-        this.add(btnCategory);
+        panel.add(btnCategory);
         
         JButton btnProduct = new JButton("Produtos");
         btnProduct.addActionListener(new ActionListener() {
@@ -43,8 +49,12 @@ public class StockPanel extends JPanel {
                 mainScreen.addCenterPanel(new ListPanel<ProductStock>(new ProductStockPanel(mainScreen), "./productStock.dat"));
             }            
         });
-        this.add(btnProduct);
+        panel.add(btnProduct);
         
-        this.add(center, new GridBagConstraints());        
+        panel.add(center, new GridBagConstraints());        
+        
+        if(UserController.getInstance().getUser() == User.GERENTE)
+            this.add(new BackButtonPanel(mainScreen), BorderLayout.NORTH);
+        this.add(panel, BorderLayout.CENTER);
     }
 }
