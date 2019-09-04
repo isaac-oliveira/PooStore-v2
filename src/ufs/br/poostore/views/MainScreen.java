@@ -12,6 +12,8 @@ import ufs.br.poostore.controllers.UserController;
 import ufs.br.poostore.event.OnBack;
 import ufs.br.poostore.event.UserEvent;
 import ufs.br.poostore.models.Client;
+import ufs.br.poostore.models.ProductStock;
+import ufs.br.poostore.models.Sale;
 
 /**
  *
@@ -42,7 +44,7 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
         });
         UserController.getInstance().setUserEvent(this);
         this.addCenterPanel(loginPanel);
-        //this.add(new ListPanel<Client>(new ClientPanel(), "./clients.dat"), BorderLayout.CENTER);
+        //this.add(new ListPanel<ProductStock>(new ProductStockPanel(this), "./stock.dat"), BorderLayout.CENTER);
     }
     
     public void addCenterPanel(JPanel panel) {
@@ -63,6 +65,7 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
     
     public JPanel getUserPanel(User user) {
         switch(user) {
+            case CAIXA: return new ListPanel<Sale>(new SalePanel(), "./sale.dat");
             case GESTOR_ESTOQUE: return new StockPanel(this);
             case GESTOR_CLIENTE: return new ListPanel<Client>(new ClientPanel(), "./clients.dat");
             case GERENTE: return new ManagerPanel(this);

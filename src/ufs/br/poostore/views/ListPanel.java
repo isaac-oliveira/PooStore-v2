@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -34,7 +35,7 @@ public class ListPanel<T> extends JPanel {
     public void loadList() {
         list = listController.getAllList();
         jList.setListData(new Vector<T>(list));
-        rightPanel.loadInfo(ListPanel.this, null);
+        rightPanel.loadInfo(this, null);
     }
     
     private void initComponents() {
@@ -50,7 +51,7 @@ public class ListPanel<T> extends JPanel {
             }
         });
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-                jList, (Component) rightPanel);
+                new JScrollPane(jList), (Component) rightPanel);
         
         this.setLayout(new BorderLayout());
         this.add(splitPane);

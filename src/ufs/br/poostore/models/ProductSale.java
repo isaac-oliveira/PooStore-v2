@@ -32,11 +32,11 @@ public class ProductSale extends Product implements Serializable, Equals<Product
     
     @Override
     public String toString(){
-        return "Código " + this.getId() + "- Nome: " + this.getName();
+        return "Código " + super.getId() + "- Nome: " + super.getName();
     }
     
     @Override
     public boolean isRegistered(ProductSale obj){
-        return this.getName().equalsIgnoreCase(obj.getName());
+        return super.getName().equalsIgnoreCase(obj.getName());
     }
 }

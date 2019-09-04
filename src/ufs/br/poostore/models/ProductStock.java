@@ -8,11 +8,10 @@ public class ProductStock extends Product implements Serializable, Equals<Produc
     private boolean inPromotion;
     private float promotionPercent;
 
-    ProductStock() {}
-
-    public ProductStock(int quantityStock, boolean inPromotion, float promotionPercent) {
+    public ProductStock(long id, String name, int expirationDate, int categoryId, float price, int quantityStock, float promotionPercent) {
+        super(id, name, expirationDate, categoryId, price);
         this.quantityStock = quantityStock;
-        this.inPromotion = inPromotion;
+        //this.inPromotion = inPromotion;
         this.promotionPercent = promotionPercent;
     }
 
@@ -42,11 +41,11 @@ public class ProductStock extends Product implements Serializable, Equals<Produc
     
     @Override
     public String toString(){
-        return "Código " + this.getId() + "- Nome: " + this.getName();
+        return "Código " + super.getId() + "- Nome: " + super.getName();
     }
     
     @Override
     public boolean isRegistered(ProductStock obj){
-        return this.getName().equalsIgnoreCase(obj.getName());
+        return super.getName().equalsIgnoreCase(obj.getName());
     }
 }

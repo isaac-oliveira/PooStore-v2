@@ -46,7 +46,7 @@ public class StockPanel extends JPanel {
         btnProduct.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                mainScreen.addCenterPanel(new ListPanel<ProductStock>(new ProductStockPanel(mainScreen), "./productStock.dat"));
+                mainScreen.addCenterPanel(new ListPanel<ProductStock>(new ProductStockPanel(mainScreen), "./stock.dat"));
             }            
         });
         panel.add(btnProduct);

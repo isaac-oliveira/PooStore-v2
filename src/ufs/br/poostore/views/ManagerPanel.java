@@ -8,6 +8,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import ufs.br.poostore.models.Client;
+import ufs.br.poostore.models.Sale;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ManagerPanel extends JPanel {
         btnCashier.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-
+                mainScreen.addCenterPanel(new ListPanel<Sale>(new SalePanel(mainScreen), "./sale.dat"));
             }            
         });
         this.add(btnCashier);

@@ -6,17 +6,20 @@
 package ufs.br.poostore.views;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
+import java.util.Vector;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import ufs.br.poostore.consts.User;
 import ufs.br.poostore.event.OnItemSelectedListener;
 import ufs.br.poostore.models.Category;
+import ufs.br.poostore.store.FileStore;
 import ufs.br.poostore.views.dialog.CategoryDialog;
 
 /**
@@ -25,10 +28,10 @@ import ufs.br.poostore.views.dialog.CategoryDialog;
  */
 public class CategoryPanel extends JPanel implements OnItemSelectedListener<Category> {
 
-    private JLabel nameLabel;
     private ListPanel listPanel;
     private Category category;
     private MainScreen mainScreen;
+    private JList jList;
 
     CategoryPanel(MainScreen mainScreen) {
         this.mainScreen = mainScreen;
@@ -37,21 +40,8 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        
-        JPanel center = new JPanel();
-        center.setLayout(new GridBagLayout());
-        
-        JPanel keyPanel = new JPanel();
-        keyPanel.setLayout(new BoxLayout(keyPanel, BoxLayout.Y_AXIS));
-        keyPanel.add(new JLabel("Nome: "));
-        
-        JPanel valuePanel = new JPanel();
-        valuePanel.setLayout(new BoxLayout(valuePanel, BoxLayout.Y_AXIS));
-        nameLabel = new JLabel("-");
-        valuePanel.add(nameLabel);
-                
-        center.add(keyPanel, new GridBagConstraints());
-        center.add(valuePanel, new GridBagConstraints());
+       
+        jList = new JList();
         
         JPanel bottomPanel = new JPanel();
         
@@ -87,7 +77,7 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         });
         bottomPanel.add(btnRemove);
         this.add(new BackButtonPanel(mainScreen, User.GESTOR_ESTOQUE), BorderLayout.NORTH);
-        this.add(center, BorderLayout.CENTER);
+        this.add(new JScrollPane(jList), BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
@@ -96,6 +86,6 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         boolean notNull = obj != null;
         this.listPanel = listPanel;
         this.category = obj;
-        nameLabel.setText(notNull ? obj.getName() : "-");
+        jList.setListData(notNull ? new Vector<Category>(new FileStore("./category.dat").read()) : new Vector<>());
     }
 }

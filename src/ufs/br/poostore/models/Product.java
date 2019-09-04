@@ -1,6 +1,8 @@
 package ufs.br.poostore.models;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable {
     
     private long id;
     private String name;
