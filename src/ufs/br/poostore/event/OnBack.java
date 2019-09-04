@@ -5,10 +5,12 @@
  */
 package ufs.br.poostore.event;
 
+import ufs.br.poostore.consts.User;
+
 /**
  *
  * @author victor
  */
 public interface OnBack {
-    public void onBackPressed();
+    public void onBackPressed(User user);
 }

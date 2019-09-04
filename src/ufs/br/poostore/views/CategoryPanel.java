@@ -14,6 +14,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import ufs.br.poostore.consts.User;
 import ufs.br.poostore.event.OnItemSelectedListener;
 import ufs.br.poostore.models.Category;
 import ufs.br.poostore.views.dialog.CategoryDialog;
@@ -85,7 +86,7 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
             }
         });
         bottomPanel.add(btnRemove);
-        this.add(new BackButtonPanel(mainScreen), BorderLayout.NORTH);
+        this.add(new BackButtonPanel(mainScreen, User.GESTOR_ESTOQUE), BorderLayout.NORTH);
         this.add(center, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }

@@ -3,14 +3,14 @@ package ufs.br.poostore.views;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import ufs.br.poostore.consts.User;
 import ufs.br.poostore.controllers.UserController;
-import ufs.br.poostore.controllers.WindowsController;
 import ufs.br.poostore.event.OnBack;
 import ufs.br.poostore.event.UserEvent;
-import ufs.br.poostore.models.Category;
 import ufs.br.poostore.models.Client;
 
 /**
@@ -22,11 +22,11 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
     public static final int HEIGHT = 400;
     private IndicatorUserPanel indicatorUser;
     private LoginPanel loginPanel = new LoginPanel();
+    private List<JPanel> stackNavigation = new ArrayList<JPanel>();
     private JPanel panel;
 
     public MainScreen() {
         super("PooStore");
-        WindowsController.getInstance().setFrame(this);
         initComponents();
     }
 
@@ -46,6 +46,14 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
     }
     
     public void addCenterPanel(JPanel panel) {
+        if(this.panel != null) this.remove(this.panel);
+        this.add(panel, BorderLayout.CENTER);
+        this.revalidate();
+
+        this.panel = panel;
+    }
+    
+    public void addPanel(JPanel panel) {
         if(this.panel != null) this.remove(this.panel);
         this.add(panel, BorderLayout.CENTER);
         this.revalidate();
@@ -81,8 +89,7 @@ public class MainScreen extends JFrame implements UserEvent, OnBack {
     }
 
     @Override
-    public void onBackPressed() {
-        User user = UserController.getInstance().getUser();
+    public void onBackPressed(User user) {
         this.addCenterPanel(getUserPanel(user));
     }
 }

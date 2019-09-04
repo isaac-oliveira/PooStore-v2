@@ -54,7 +54,7 @@ public class StockPanel extends JPanel {
         panel.add(center, new GridBagConstraints());        
         
         if(UserController.getInstance().getUser() == User.GERENTE)
-            this.add(new BackButtonPanel(mainScreen), BorderLayout.NORTH);
+            this.add(new BackButtonPanel(mainScreen, User.GERENTE), BorderLayout.NORTH);
         this.add(panel, BorderLayout.CENTER);
     }
 }

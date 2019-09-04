@@ -2,7 +2,6 @@ package ufs.br.poostore.views.dialog;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -12,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import ufs.br.poostore.controllers.ListController;
-import ufs.br.poostore.controllers.WindowsController;
 import ufs.br.poostore.models.Category;
 import ufs.br.poostore.views.ListPanel;
 

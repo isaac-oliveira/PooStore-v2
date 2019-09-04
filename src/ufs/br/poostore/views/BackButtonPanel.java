@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import ufs.br.poostore.consts.User;
 import ufs.br.poostore.event.OnBack;
 
 /**
@@ -14,9 +15,11 @@ public class BackButtonPanel extends JPanel {
 
     private final MainScreen mainScreen;
     private OnBack onBack;
+    private final User user;
     
-    public BackButtonPanel(MainScreen mainScreen) {
+    public BackButtonPanel(MainScreen mainScreen, User user) {
         this.mainScreen = mainScreen;
+        this.user = user;
         initComponents();
     }
 
@@ -35,7 +38,7 @@ public class BackButtonPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(onBack != null)
-                    onBack.onBackPressed();
+                    onBack.onBackPressed(user);
             }            
         });
         this.add(backButton);
