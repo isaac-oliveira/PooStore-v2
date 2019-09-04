@@ -72,7 +72,7 @@ public class ListControllerTest {
 
     @Test
     public void testFindOne() {
-        System.out.println("findOne");//implentar teste
+        System.out.println("findOn");//implentar teste
     }
 
     @Test
