@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import ufs.br.poostore.consts.User;
+import ufs.br.poostore.controllers.ListController;
 import ufs.br.poostore.event.OnItemSelectedListener;
+import ufs.br.poostore.models.Category;
 import ufs.br.poostore.models.ProductStock;
 import ufs.br.poostore.views.dialog.ProductStockDialog;
 
@@ -112,5 +114,11 @@ public class ProductStockPanel extends JPanel implements OnItemSelectedListener<
         boolean notNull = obj != null;
         this.listPanel = listPanel;
         this.productStock = obj;
+        nameLabel.setText(notNull ? productStock.getName() : "-");
+        validateLabel.setText(notNull ? productStock.getExpirationDate() : "-");
+        categoryLabel.setText(notNull ? new ListController<Category>("./category.dat").findOne(productStock.getCategoryId()).getName() : "-");
+        priceLabel.setText(notNull ? String.valueOf(productStock.getPrice()) : "-");
+        quantityStockLabel.setText(notNull ? String.valueOf(productStock.getQuantityStock()) : "-");
+        promotionPercentLabel.setText(notNull ? String.valueOf(productStock.getPromotionPercent()) + "%" : "-");
     }
 }

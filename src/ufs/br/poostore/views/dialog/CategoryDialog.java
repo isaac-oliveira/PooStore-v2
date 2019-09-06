@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import ufs.br.poostore.controllers.ListController;
 import ufs.br.poostore.models.Category;
+import ufs.br.poostore.store.IdFile;
 import ufs.br.poostore.views.ListPanel;
 
 /**
@@ -62,7 +63,8 @@ private ListPanel listPanel;
             public void actionPerformed(ActionEvent ae) {
                 message.setText("");
                 if(category == null) {
-                    if(!listController.add(new Category(1, name.getText())))
+                    long id = IdFile.getInstance().generateID(IdFile.CATEGORY_ID);
+                    if(!listController.add(new Category(id, name.getText())))
                         message.setText("Categoria já registrada");
                     else 
                         CategoryDialog.this.setVisible(false);
@@ -93,5 +95,4 @@ private ListPanel listPanel;
         this.setModal(true);
         this.pack();
     }
-    
 }

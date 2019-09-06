@@ -15,8 +15,10 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import ufs.br.poostore.controllers.ListController;
+import ufs.br.poostore.models.Category;
 import ufs.br.poostore.models.ProductStock;
 import ufs.br.poostore.store.FileStore;
+import ufs.br.poostore.store.IdFile;
 import ufs.br.poostore.views.ListPanel;
 
 /**
@@ -31,6 +33,8 @@ public class ProductStockDialog extends JDialog {
     private JComboBox category;
     private JSpinner date;
     private JSpinner quantity;
+    private JTextField price;
+    private JSpinner promotion;
     
     public ProductStockDialog(ListPanel listPanel) {
         this.listPanel = listPanel;
@@ -64,7 +68,7 @@ public class ProductStockDialog extends JDialog {
         panel.add(category);
         
         panel.add(new JLabel("Preço"));
-        JTextField price = new JTextField();
+        price = new JTextField();
         price.setPreferredSize(new Dimension(200, 25));
         panel.add(price);
         
@@ -73,7 +77,13 @@ public class ProductStockDialog extends JDialog {
         panel.add(quantity);
         
         panel.add(new JLabel("Promoção em porcentagem"));
-        panel.add(new JSpinner());
+        promotion = new JSpinner();
+        panel.add(promotion);
+        
+        if(productStock != null) {
+            name.setText(productStock.getName());
+            price.setText(String.valueOf(productStock.getPrice()));
+        }
         
         JLabel message = new JLabel();
         message.setPreferredSize(new Dimension(200, 25));
@@ -87,12 +97,26 @@ public class ProductStockDialog extends JDialog {
             public void actionPerformed(ActionEvent ae) {
                 message.setText("");
                 if(productStock == null) {
-                    if(!listController.add(new ProductStock(1, "Arroz", 1, 1, 1.4f, 1, 1.5f)))
+                    long id = IdFile.getInstance().generateID(IdFile.PRODUCT_STOCK_ID);
+                    ProductStock p = new ProductStock();
+                    p.setId(id);
+                    p.setName(name.getText());
+                    p.setCategoryId(((Category) category.getSelectedItem()).getId());
+                    p.setPrice(Float.parseFloat(price.getText()));
+                    p.setExpirationDate(date.getValue().toString());
+                    p.setQuantityStock(Integer.parseInt(quantity.getValue().toString()));
+                    p.setPromotionPercent(Float.parseFloat(promotion.getValue().toString()));
+                    if(!listController.add(p)) 
                         message.setText("Produto já registrado");
                     else 
                         ProductStockDialog.this.setVisible(false);
                 } else {
                     productStock.setName(name.getText());
+                    productStock.setCategoryId(((Category) category.getSelectedItem()).getId());
+                    productStock.setPrice(Float.parseFloat(price.getText()));
+                    productStock.setExpirationDate(date.getValue().toString());
+                    productStock.setQuantityStock(Integer.parseInt(quantity.getValue().toString()));
+                    productStock.setPromotionPercent(Float.parseFloat(promotion.getValue().toString()));
                     if(!listController.update(productStock))
                         message.setText("Erro ao atualizar");
                     else 

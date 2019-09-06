@@ -8,13 +8,20 @@ public class ProductStock extends Product implements Serializable, Equals<Produc
     private boolean inPromotion;
     private float promotionPercent;
 
-    public ProductStock(long id, String name, int expirationDate, int categoryId, float price, int quantityStock, float promotionPercent) {
+    public ProductStock(long id, String name, String expirationDate, long categoryId, float price, int quantityStock, float promotionPercent) {
         super(id, name, expirationDate, categoryId, price);
         this.quantityStock = quantityStock;
         //this.inPromotion = inPromotion;
         this.promotionPercent = promotionPercent;
     }
 
+    public ProductStock() {}
+    
+    @Override
+    public float getPrice() {
+        return super.getPrice() * (1 - (promotionPercent/100)); 
+    }
+    
     public int getQuantityStock() {
         return quantityStock;
     }

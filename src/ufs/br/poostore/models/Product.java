@@ -6,13 +6,13 @@ public abstract class Product implements Serializable {
     
     private long id;
     private String name;
-    private int expirationDate;
-    private int categoryId;
+    private String expirationDate;
+    private long categoryId;
     private float price;
 
     Product() {}
 
-    public Product(long id, String name, int expirationDate, int categoryId, float price) {
+    public Product(long id, String name, String expirationDate, long categoryId, float price) {
         this.id = id;
         this.name = name;
         this.expirationDate = expirationDate;
@@ -36,19 +36,19 @@ public abstract class Product implements Serializable {
         this.name = name;
     }
 
-    public int getExpirationDate(){
+    public String getExpirationDate(){
         return expirationDate;
     }
 
-    public void setExpirationDate(int expirationDate){
+    public void setExpirationDate(String expirationDate){
         this.expirationDate = expirationDate;
     }
 
-    public int getCategoryId(){
+    public long getCategoryId(){
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId){
+    public void setCategoryId(long categoryId){
         this.categoryId = categoryId;
     }
 

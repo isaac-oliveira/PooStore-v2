@@ -6,11 +6,10 @@
 package ufs.br.poostore.views;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -19,6 +18,7 @@ import javax.swing.JScrollPane;
 import ufs.br.poostore.consts.User;
 import ufs.br.poostore.event.OnItemSelectedListener;
 import ufs.br.poostore.models.Category;
+import ufs.br.poostore.models.ProductStock;
 import ufs.br.poostore.store.FileStore;
 import ufs.br.poostore.views.dialog.CategoryDialog;
 
@@ -86,6 +86,12 @@ public class CategoryPanel extends JPanel implements OnItemSelectedListener<Cate
         boolean notNull = obj != null;
         this.listPanel = listPanel;
         this.category = obj;
-        jList.setListData(notNull ? new Vector<Category>(new FileStore("./category.dat").read()) : new Vector<>());
+        List<ProductStock> list = new ArrayList<>();
+        if(notNull) {
+            for(ProductStock stock : new FileStore<ProductStock>("./stock.dat").read())
+                if(stock.getCategoryId() == category.getId()) 
+                    list.add(stock);
+        }
+        jList.setListData(notNull ? new Vector<ProductStock>(list) : new Vector<>());
     }
 }

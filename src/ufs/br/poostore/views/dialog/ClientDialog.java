@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import ufs.br.poostore.controllers.ListController;
 import ufs.br.poostore.models.Client;
+import ufs.br.poostore.store.IdFile;
 import ufs.br.poostore.views.ListPanel;
 
 /**
@@ -75,7 +76,8 @@ public class ClientDialog extends JDialog {
             public void actionPerformed(ActionEvent ae) {
                 message.setText("");
                 if(client == null) {
-                    if(!listController.add(new Client(1, name.getText(), cpf.getText(), phone.getText())))
+                    long id = IdFile.getInstance().generateID(IdFile.CLIENT_ID);
+                    if(!listController.add(new Client(id, name.getText(), cpf.getText(), phone.getText())))
                         message.setText("CPF já registrado");
                     else 
                         ClientDialog.this.setVisible(false);

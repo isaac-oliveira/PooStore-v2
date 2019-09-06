@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class Sale implements Serializable, Equals<Sale>{
     
     private long id;
-    private int date;
+    private String date;
     private ProductSale [] itens;
-    private int clientId;
+    private long clientId;
 
     public Sale() {}
 
-    public Sale(long id, int date, ProductSale[] itens, int clientId) {
+    public Sale(long id, String date, ProductSale[] itens, long clientId) {
         this.id = id;
         this.date = date;
         this.itens = itens;
@@ -26,11 +26,11 @@ public class Sale implements Serializable, Equals<Sale>{
         this.id = id;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -42,17 +42,17 @@ public class Sale implements Serializable, Equals<Sale>{
         this.itens = itens;
     }
 
-    public int getClientId() {
+    public long getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(long clientId) {
         this.clientId = clientId;
     }
     
     @Override
     public String toString(){
-        return "Código " + id + "- Data: " + date; //converter para data usual
+        return "Código " + id + "- Data: " + date;
     }
     
     @Override

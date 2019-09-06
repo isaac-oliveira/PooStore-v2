@@ -11,12 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import ufs.br.poostore.consts.User;
+import ufs.br.poostore.controllers.ListController;
 import ufs.br.poostore.event.OnItemSelectedListener;
+import ufs.br.poostore.models.Client;
 import ufs.br.poostore.models.Sale;
 import ufs.br.poostore.views.dialog.SaleDialog;
 
 /**
- *
+ * Classe incompleta
  * @author isaac
  */
 public class SalePanel extends JPanel implements OnItemSelectedListener<Sale> {
@@ -77,7 +79,8 @@ public class SalePanel extends JPanel implements OnItemSelectedListener<Sale> {
         btnUpdate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                if(listPanel != null && sale != null)
+                    new SaleDialog(sale, listPanel).setVisible(true);
             }
         });
         bottomPanel.add(btnUpdate);
@@ -86,7 +89,10 @@ public class SalePanel extends JPanel implements OnItemSelectedListener<Sale> {
         btnRemove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               
+                if(listPanel != null && sale != null) {
+                    listPanel.getListController().remove(sale);
+                    listPanel.loadList();
+                }
             }
         });
         bottomPanel.add(btnRemove);
@@ -99,7 +105,10 @@ public class SalePanel extends JPanel implements OnItemSelectedListener<Sale> {
     
     @Override
     public void loadInfo(ListPanel listPanel, Sale obj) {
+        boolean notNull = obj != null;
         this.listPanel = listPanel;
         this.sale = obj;
+        dateLabel.setText(notNull ? sale.getDate() : "-");
+        clientLabel.setText(notNull ? new ListController<Client>("./clients.dat").findOne(sale.getClientId()).getName() : "-");
     }    
 }

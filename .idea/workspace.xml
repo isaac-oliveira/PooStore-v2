@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="acec90ad-dcb4-47e7-b786-d7858a0c5621" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/category.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clienttest.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/controllers/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/controllers/ListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/models/Equals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/models/Equals.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/models/ProductStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/models/ProductStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/models/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/models/Sale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/CategoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/CategoryPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/ProductStockPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/ProductStockPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/SalePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/SalePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/CategoryDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/CategoryDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/ClientDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/ClientDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/ProductStockDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/ProductStockDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/SaleDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ufs/br/poostore/views/dialog/SaleDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ufs/br/poostore/controllers/ListControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ufs/br/poostore/controllers/ListControllerTest.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1QTAP8uasCFqFLAyDdoUuEf9Mub" />
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="acec90ad-dcb4-47e7-b786-d7858a0c5621" name="Default Changelist" comment="" />
+      <created>1567784188931</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567784188931</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

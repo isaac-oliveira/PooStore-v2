@@ -14,8 +14,7 @@ public class ListController<T> {
     }
 
     public boolean add(T obj) {
-        int index = getIndex(obj);
-        if(index == -1) {
+        if(!exists(obj)) {
             this.list.add(obj);
             this.fileStore.write(list);
         } else {
@@ -26,7 +25,7 @@ public class ListController<T> {
 
     public boolean remove(T obj) {
         int index = getIndex(obj);
-        if(index != -1) {
+        if(exists(obj)) {
             this.list.remove(index);
             this.fileStore.write(list);
         } else {
@@ -35,9 +34,10 @@ public class ListController<T> {
         return true;
     }
 
-    public boolean update(T obj) {
-        int index = getIndex(obj);
-        if(index != -1) {
+    public boolean update(T obj) {        
+        Equals<T> equals = (Equals<T>) obj;
+        int index = getIndexById(equals.getId());
+        if(!exists(obj)) {
             this.list.set(index, obj);
             this.fileStore.write(list);
         } else {
@@ -54,16 +54,33 @@ public class ListController<T> {
         
         return -1;
     }
+    
+    public int getIndexById(long id) {
+        for(int i = 0; i < list.size(); i++) {
+            Equals<T> equals = (Equals<T>) list.get(i);
+            if(equals.getId() == id)
+                return i;
+        }
+            
+        
+        return -1;
+    }
 
     public boolean exists(T obj) {
         return getIndex(obj) != -1;
     }
 
-    public T findOne(String value) {
-        return null;//falta implementar 
+    public T findOne(long id) {
+        for(int i = 0; i < list.size(); i++) {
+            Equals<T> equals = (Equals<T>) list.get(i);
+            if(equals.getId() == id)
+                return list.get(i);
+        }
+        return null;
     }
 
     public List<T> find(String value) {
+        
         return null;//falta implementar 
     }
 
