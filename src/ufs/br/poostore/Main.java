@@ -1,8 +1,14 @@
 package ufs.br.poostore;
 
-public class Main {
+import ufs.br.poostore.views.MainScreen;
 
-    public static void main(String[] args) {
-	// write your code here
+/**
+ *
+ * @author isaac
+ */
+public class Main {
+    
+    public static void main(String args[]) {
+        new MainScreen().setVisible(true);               
     }
 }
